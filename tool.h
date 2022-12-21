@@ -13,6 +13,8 @@ void setConsoleScreenBufferSize();
 
 void setColor(int backgound_color, int text_color);
 
+void ShowCur(bool CursorVisibility);
+
 void gotoXY(int x, int y);
 
 void readFile(string filename, int X, int Y);

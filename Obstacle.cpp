@@ -63,24 +63,24 @@ lane::lane(int level, int order, int direction = leftToRight) {
 	for (int i = 0; i < numberObstacle; i++) {
 		if (temp == 0) {
 			if (direction == leftToRight) {
-				Car* p = new Car(i*(len + tempSpace) + borderGLx +1, (borderGUy+1)+ ((order-1)*heightOflane));
+				Car* p = new Car(i*(len + tempSpace) + borderGLx +1, (borderGDy-4) - ((order-1)*heightOflane));
 				p->space = len + tempSpace;
 				this->point.push_back(p);
 			}
 			else {
-				Truck* p = new Truck(borderGRx -1 - i * (len + tempSpace), (borderGUy + 1) + ((order-1) * heightOflane));
+				Truck* p = new Truck(borderGRx -1 - i * (len + tempSpace), (borderGDy - 4) - ((order-1) * heightOflane));
 				p->space = len + tempSpace;
 				this->point.push_back(p);
 			}
 		}
 		else if (temp == 1) {
 			if (direction == leftToRight) {
-				Cat* p = new Cat(i * (len + tempSpace) + borderGLx + 1, (borderGUy + 1) + ((order - 1) * heightOflane));
+				Cat* p = new Cat(i * (len + tempSpace) + borderGLx + 1, (borderGDy - 4) - ((order - 1) * heightOflane));
 				p->space = len + tempSpace;
 				this->point.push_back(p);
 			}
 			else {
-				Bus* p = new Bus(borderGRx -1 - i * (len + tempSpace), (borderGUy + 1) + ((order - 1) * heightOflane));
+				Bus* p = new Bus(borderGRx -1 - i * (len + tempSpace), (borderGDy - 4) - ((order - 1) * heightOflane));
 				p->space = len + tempSpace;
 				this->point.push_back(p);
 			}
@@ -120,7 +120,7 @@ void Car::draw() {
 			gotoXY(this->getX() + j, this->getY()+i);
 			cout << picture[i][j];
 		}
-		cout << endl;
+		if (i < height - 1) cout << endl;
 		if (this->getX()-1 <= borderGLx || this->getX()-1 >= borderGRx) continue;
 		gotoXY(this->getX()-1, this->getY() + i);
 		cout << " ";
@@ -134,7 +134,7 @@ void Cat::draw() {
 			gotoXY(this->getX() + j, this->getY()+i);
 			cout << picture[i][j];
 		}
-		cout << endl;
+		if (i < height - 1) cout << endl;
 		if (this->getX()-1 <= borderGLx || this->getX()-1 >= borderGRx) continue;
 		gotoXY(this->getX()-1, this->getY() + i);
 		cout << " ";
@@ -148,7 +148,7 @@ void Truck::draw() {
 			gotoXY(this->getX() - j, this->getY()+i);
 			cout << picture[i][picture[i].length()-j-1];
 		}
-		cout << endl;
+		if (i <height-1) cout << endl;
 		if (this->getX() + 1 <= borderGLx || this->getX() + 1 >= borderGRx) continue;
 		gotoXY(this->getX() + 1, this->getY() + i);
 		cout << " ";
@@ -162,7 +162,7 @@ void Bus::draw() {
 			gotoXY(this->getX() - j, this->getY() + i);
 			cout << picture[i][picture[i].length() - j-1];
 		}
-		cout << endl;
+		if (i < height - 1) cout << endl;
 		if (this->getX() + 1 <= borderGLx || this->getX() + 1 >= borderGRx) continue;
 		gotoXY(this->getX() + 1, this->getY() + i);
 		cout << " ";
@@ -207,6 +207,7 @@ void lane::play() {
 	for (int i = 0; i < point.size(); i++) {
 		point[i]->draw();
 	}
+	gotoXY(0, 0);
 }
 
 lane::~lane() {

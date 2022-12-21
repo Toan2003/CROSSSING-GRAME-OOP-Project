@@ -18,11 +18,12 @@ private:
     CPEOPLE* people;
     vector<lane*> list;
 public:
-    Game(int level, string player);
     ~Game();
     CPEOPLE* returnPeople() {
         return people;
     };
+    void gameRepair(int, string);
+    void deleteSource();
     void gamePlay();
     void startGame();
     void endGame();

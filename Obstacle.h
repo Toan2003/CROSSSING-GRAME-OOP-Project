@@ -17,7 +17,7 @@ using namespace std;
 #define borderGLx 3
 #define borderGRx 133
 #define borderGUy 1
-#define borderGDy 41
+#define borderGDy 46
 
 #define heightOflane 5
 #define car -1

@@ -66,7 +66,6 @@ void readFile(string filename, int X, int Y)
 void chooseNewGame()
 {
     system("cls");
-    cout << "You chose new game";
 }
 void chooseLoadGame()
 {
@@ -111,9 +110,10 @@ void action(char command, int& selection, bool& quit) {
 
 void menu(bool& quit, int& selection) {
     char command;
+    // system("color F0");
     system("cls");
-    readFile("menu.txt", 20, 5);
-    int X = 62;
+    readFile("menu.txt", 40, 5);
+    int X = 100;
     gotoXY(X, 15);
     if (selection == 3)
         cout << "->New game";
@@ -131,4 +131,15 @@ void menu(bool& quit, int& selection) {
         cout << "Exit";
     command = _getch();
     action(command, selection, quit);
+}
+
+void ShowCur(bool CursorVisibility)
+{
+    HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO ConCurInf;
+
+    ConCurInf.dwSize = 10;
+    ConCurInf.bVisible = CursorVisibility;
+
+    SetConsoleCursorInfo(handle, &ConCurInf);
 }

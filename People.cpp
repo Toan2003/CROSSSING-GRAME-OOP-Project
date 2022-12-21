@@ -3,16 +3,16 @@
 CPEOPLE::CPEOPLE()
 {
     mX = 50;
-    mY = borderGDy - 2;
-    mState = 1;
+    mY = borderGDy - 3;
+    mState = true;
 }
 void CPEOPLE::Up()
 {
-    if (mY - 1 == borderGUy)
+    if (mY - 2 == borderGUy)
     {
         return;
     }
-    mY -= 1;
+    mY -= 5;
 };
 void CPEOPLE::Left()
 {
@@ -32,11 +32,11 @@ void CPEOPLE::Right()
 }
 void CPEOPLE::Down()
 {
-    if (borderGDy - 2 == mY)
+    if (borderGDy - 3 == mY)
     {
         return;
     }
-    mY += 1;
+    mY += 5;
 }
 void CPEOPLE::move()
 {
@@ -56,9 +56,9 @@ void CPEOPLE::move()
         break;
     }
 }
+
 void CPEOPLE::draw()
 {
-
     gotoXY(mX + 1, mY);
     cout << "o";
 
@@ -77,7 +77,10 @@ void CPEOPLE::draw()
 
     gotoXY(mX + 2, mY + 2);
     cout << (char)92;
+
+    gotoXY(0, 0);
 }
+
 void CPEOPLE::clearPeople()
 {
 
@@ -99,15 +102,17 @@ void CPEOPLE::clearPeople()
     gotoXY(mX + 2, mY + 2);
     cout << " ";
 }
+
 bool CPEOPLE::isDead()
 {
     if (mState == false)
         return true;
     return false;
 }
+
 bool CPEOPLE::isFinish()
 {
-    if (mState == true && mY - 1 == borderGUy)
+    if (mState == true && mY - 2 == borderGUy)
     {
         return true;
     }

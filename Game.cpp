@@ -1,8 +1,12 @@
 #include "Game.h"
 
-Game::gameRepair(int level, string player) {
-    this->player = player;
-    player = "unknown";
+void Game::gameRepair(int level, string player) {
+    if (player == "") {
+        this->player = "unknown";
+    }
+    else {
+        this->player = player;
+    }
     this->level = level;
     if (level == 1) {
         lane *a = new lane(level, 1, leftToRight);
@@ -88,5 +92,16 @@ void Game::gamePlay() {
         people->assignChar();
        
         this_thread::sleep_for(chrono::nanoseconds(5000000));
+    }
+}
+
+void Game::deleteSource() {
+    delete people;
+    lane* temp;
+    int n = list.size();
+    for (int i = 0; i < n; i++) {
+        temp = list.back();
+        list.pop_back();
+        delete temp;
     }
 }
