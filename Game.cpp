@@ -22,9 +22,9 @@ void Game::gameRepair(int level, string player) {
     else if (level == 2) {
         lane *a = new lane(level, 1, leftToRight);
         lane *b = new lane(level, 2, rightToLeft);
-        lane *c = new lane(level, 4, leftToRight);
-        lane *d = new lane(level, 5, rightToLeft);
-        lane *e = new lane(level, 7, leftToRight);
+        lane *c = new lane(level, 3, leftToRight);
+        lane *d = new lane(level, 4, rightToLeft);
+        lane *e = new lane(level, 5, leftToRight);
         list.push_back(a);
         list.push_back(b);
         list.push_back(c);
@@ -91,7 +91,7 @@ void Game::gamePlay() {
         people->update();
         people->assignChar();
        
-        //this_thread::sleep_for(chrono::nanoseconds(1));
+        this_thread::sleep_for(chrono::nanoseconds(0));
     }
 }
 
@@ -118,7 +118,7 @@ void Game::deathAnimation() {
     const int height = 5;
     const int length = 17;
     const string picture[5] =
-    { "       ___       ",
+    {"       ___       ",
      "   ___/UFO\\___   ",
      "  /   '---'   \\  ",
      " /'--_______--'\\ ",

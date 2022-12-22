@@ -16,9 +16,9 @@ using namespace std;
 #define greenLight 1
 
 #define borderGLx 3
-#define borderGRx 133
+#define borderGRx 100
 #define borderGUy 1
-#define borderGDy 46
+#define borderGDy 41
 
 #define heightOflane 5
 #define car -1
@@ -124,15 +124,17 @@ private:
     const short timeRedOn = 3;
     int y;
     bool isRed;
+    int order;
     time_t begin;
     time_t end;
 public:
     trafficLight();
     void setY(int y);
+    void setRedOn();
+    void setOrder(int);
+    bool getTrafficLife();
     void draw();
     void turnOff();
-    bool getTrafficLife();
-    void setRedOn();
 };
 
 

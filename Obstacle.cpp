@@ -87,6 +87,7 @@ lane::lane(int level, int order, int direction = leftToRight) {
 		}
 	}
 	light.setY(this->point[0]->getY());
+	light.setOrder(order);
 }
 
 void Vehicle::move() {
@@ -210,32 +211,26 @@ lane::~lane() {
 
 void trafficLight::draw() {
 	if (isRed) {
-		setColor(15, 0); //nen trang, chu den
-		gotoXY(borderGRx + 2, y);
-		cout << " --- ";
 		setColor(4, 0); //nen do chu den
-		gotoXY(borderGRx + 2, y+1);
-		cout << "|   |";
-		setColor(4, 0);
-		gotoXY(borderGRx + 2, y + 1);
-		cout << "|   |";
-		setColor(15, 0);
-		gotoXY(borderGRx + 2, y+2);
-		cout << " --- ";
+		if (order % 2 == 0) {
+			gotoXY(borderGRx + 1, y);
+		}
+		else {
+			gotoXY(borderGLx - 1, y);
+		}
+		cout << "  ";
+		setColor(15, 0); //nen trang chu den
 	}
 	else {
-		setColor(15, 0); //nen trang, chu den
-		gotoXY(borderGRx + 2, y);
-		cout << " --- ";
 		setColor(2, 0); //nen xanh chu den
-		gotoXY(borderGRx + 2, y + 1);
-		cout << "|   |";
-		setColor(2, 0);
-		gotoXY(borderGRx + 2, y + 1);
-		cout << "|   |";
+		if (order % 2 == 0) {
+			gotoXY(borderGRx + 1, y);
+		}
+		else {
+			gotoXY(borderGLx - 2, y);
+		}
+		cout << "  ";
 		setColor(15, 0);
-		gotoXY(borderGRx + 2, y+2);
-		cout << " --- ";
 	}
 }
 
@@ -255,4 +250,8 @@ trafficLight::trafficLight() {
 
 void trafficLight::setY(int y) {
 	this->y = y;
+}
+
+void trafficLight::setOrder(int order) {
+	this->order = order;
 }

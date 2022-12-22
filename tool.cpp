@@ -112,7 +112,7 @@ void menu(bool& quit, int& selection) {
     char command;
     // system("color F0");
     system("cls");
-    readFile("menu.txt", 40, 5);
+    readFile("menu.txt", 20, 5);
     int X = 100;
     gotoXY(X, 15);
     if (selection == 3)
