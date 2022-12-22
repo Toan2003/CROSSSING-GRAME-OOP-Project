@@ -18,12 +18,10 @@ private:
     CPEOPLE* people;
     vector<lane*> list;
 public:
-    ~Game();
     CPEOPLE* returnPeople() {
         return people;
     };
     void gameRepair(int, string);
-    void deleteSource();
     void gamePlay();
     void startGame();
     void endGame();
@@ -32,5 +30,7 @@ public:
     void deathAnimation();
     void pauseGame(HANDLE);
     void resumeGame(HANDLE);
+    void deleteSource();
+    ~Game();
 };
 

@@ -77,21 +77,32 @@ void Game::gameRepair(int level, string player) {
         list.push_back(e);
         list.push_back(f);
         list.push_back(h);
-        speed = 5;
+        speed = 50;
     }
     people = new CPEOPLE;
 }
 
 
 void Game::gamePlay() {
+    int countTimeForRedLight =100;
     while (!people->isFinish()) {
+        if (countTimeForRedLight > 100) {
+            int temp;
+            for (int i = 0; i < list.size(); i++) {
+                temp = rand() % 2;
+                list[i]->setTrafficLight(temp);
+                list[i]->drawLight();
+            }
+            countTimeForRedLight = 0;
+        }
         for (int i = 0; i < list.size(); i++) {
+  
             list[i]->play();
         }
         people->update();
         people->assignChar();
-       
-        this_thread::sleep_for(chrono::nanoseconds(0));
+        ++countTimeForRedLight;
+        this_thread::sleep_for(chrono::nanoseconds(speed));
     }
 }
 

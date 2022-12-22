@@ -172,6 +172,7 @@ void Bus::draw() {
 }
 
 void lane::play() {
+	if (light.isRedLight()) return;
 	if (direction == rightToLeft) {
 		if (point.back()->getX() <= borderGLx) {
 			Vehicle* temp = point.back();
@@ -195,8 +196,11 @@ void lane::play() {
 	for (int i = 0; i < point.size(); i++) {
 		point[i]->draw();
 	}
-	light.draw();
 	gotoXY(0, 0);
+}
+
+void lane::drawLight() {
+	light.draw();
 }
 
 lane::~lane() {
@@ -204,10 +208,20 @@ lane::~lane() {
 	while (!point.empty()) {
 		temp = point.back();
 		point.pop_back();
-		delete[] temp;
+		delete temp;
 	}
 }
 
+void lane::setTrafficLight(bool isRed) {
+	if (!light.isRedLight()) {
+		if (isRed) {
+			light.setRedOn();
+		}
+	}
+	else {
+		light.setGreenOn();
+	}
+}
 
 void trafficLight::draw() {
 	if (isRed) {
@@ -216,7 +230,7 @@ void trafficLight::draw() {
 			gotoXY(borderGRx + 1, y);
 		}
 		else {
-			gotoXY(borderGLx - 1, y);
+			gotoXY(borderGLx - 2, y);
 		}
 		cout << "  ";
 		setColor(15, 0); //nen trang chu den
@@ -234,16 +248,6 @@ void trafficLight::draw() {
 	}
 }
 
-void trafficLight::turnOff() {
-	if (isRed) {
-		end = time(NULL);
-		int temp = int(difftime(begin, end));
-		if (temp >= 3) {
-			isRed == false;
-		}
-	}
-}
-
 trafficLight::trafficLight() {
 	isRed = false;
 }
@@ -254,4 +258,17 @@ void trafficLight::setY(int y) {
 
 void trafficLight::setOrder(int order) {
 	this->order = order;
+}
+
+
+bool trafficLight::isRedLight() {
+	return isRed;
+}
+
+void trafficLight::setRedOn() {
+	isRed = true;
+}
+
+void trafficLight::setGreenOn() {
+	isRed = false;
 }

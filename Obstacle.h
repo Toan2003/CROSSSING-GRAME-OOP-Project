@@ -31,8 +31,8 @@ using namespace std;
 #define spacelevel4 17
 #define spacelevel5 15
 
-#define borderCLx 139
-#define borderCRx 178
+#define borderCLx 107
+#define borderCRx 137
 
 #define green 0;
 #define red 1;
@@ -125,14 +125,13 @@ private:
     int y;
     bool isRed;
     int order;
-    time_t begin;
-    time_t end;
 public:
     trafficLight();
-    void setY(int y);
+    void setY(int);
     void setRedOn();
+    void setGreenOn();
     void setOrder(int);
-    bool getTrafficLife();
+    bool isRedLight();
     void draw();
     void turnOff();
 };
@@ -150,6 +149,8 @@ public:
     lane();
     lane(int , int, int );
     void play();
+    void drawLight();
+    void setTrafficLight(bool);
     ~lane();
 };
 
