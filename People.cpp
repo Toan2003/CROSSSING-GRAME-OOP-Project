@@ -6,6 +6,7 @@ CPEOPLE::CPEOPLE()
     mY = borderGDy - 3;
     mState = true;
 }
+
 void CPEOPLE::Up()
 {
     if (mY - 2 == borderGUy)
@@ -14,6 +15,7 @@ void CPEOPLE::Up()
     }
     mY -= 5;
 };
+
 void CPEOPLE::Left()
 {
     if (borderGLx + 1 == mX)
@@ -22,6 +24,7 @@ void CPEOPLE::Left()
     }
     mX -= 1;
 }
+
 void CPEOPLE::Right()
 {
     if (borderGRx - 3 == mX)
@@ -30,6 +33,7 @@ void CPEOPLE::Right()
     }
     mX += 1;
 }
+
 void CPEOPLE::Down()
 {
     if (borderGDy - 3 == mY)
@@ -38,6 +42,7 @@ void CPEOPLE::Down()
     }
     mY += 5;
 }
+
 void CPEOPLE::move()
 {
     switch (c)
@@ -259,11 +264,6 @@ int CPEOPLE::getMY()
     return mY;
 }
 
-void CPEOPLE::assignMY(int y)
-{
-    mY += y;
-}
-
 int CPEOPLE::getMX()
 {
     return mX;
@@ -281,7 +281,6 @@ void CPEOPLE::nhanbanphim(char tempt)
     {
         tempt = _getch();
         c = tempt;
-
     }
 
 }
@@ -297,6 +296,7 @@ void CPEOPLE::assignChar()
 {
     c = '\0';
 }
+
 
 
 

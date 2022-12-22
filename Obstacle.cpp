@@ -58,34 +58,35 @@ lane::lane(int level, int order, int direction = leftToRight) {
 	if (level == 5) tempSpace = spacelevel5;
 
 
-	int numberObstacle = (borderGRx - borderGLx - 1) / (len + tempSpace) +2;
-
+	int numberObstacle =( (borderGRx - borderGLx - 1) / (len + tempSpace) )+1;
 	for (int i = 0; i < numberObstacle; i++) {
+		int randomSpace = 5 + rand() % 30;
 		if (temp == 0) {
 			if (direction == leftToRight) {
-				Car* p = new Car(i*(len + tempSpace) + borderGLx +1, (borderGDy-4) - ((order-1)*heightOflane));
-				p->space = len + tempSpace;
+				Car* p = new Car(i * (len + tempSpace) + borderGLx +1 + randomSpace, (borderGDy-4) - (order * heightOflane));
+				p->space = len + tempSpace + randomSpace;
 				this->point.push_back(p);
 			}
 			else {
-				Truck* p = new Truck(borderGRx -1 - i * (len + tempSpace), (borderGDy - 4) - ((order-1) * heightOflane));
-				p->space = len + tempSpace;
+				Truck* p = new Truck(borderGRx -1 - i * (len + tempSpace)-randomSpace, (borderGDy - 4) - (order * heightOflane));
+				p->space =len+ tempSpace + randomSpace;
 				this->point.push_back(p);
 			}
 		}
 		else if (temp == 1) {
 			if (direction == leftToRight) {
-				Cat* p = new Cat(i * (len + tempSpace) + borderGLx + 1, (borderGDy - 4) - ((order - 1) * heightOflane));
-				p->space = len + tempSpace;
+				Cat* p = new Cat(i * (len + tempSpace) + borderGLx + 1 + randomSpace, (borderGDy - 4) - (order * heightOflane));
+				p->space = len + tempSpace + randomSpace;
 				this->point.push_back(p);
 			}
 			else {
-				Bus* p = new Bus(borderGRx -1 - i * (len + tempSpace), (borderGDy - 4) - ((order - 1) * heightOflane));
-				p->space = len + tempSpace;
+				Bus* p = new Bus(borderGRx -1 - i * (len + tempSpace) - randomSpace, (borderGDy - 4) - (order  * heightOflane));
+				p->space =len + tempSpace + randomSpace;
 				this->point.push_back(p);
 			}
 		}
 	}
+	light.setY(this->point[0]->getY());
 }
 
 void Vehicle::move() {
@@ -170,20 +171,6 @@ void Bus::draw() {
 }
 
 void lane::play() {
-
-	//	if (direction == rightToLeft) {
-	//		if (point[i]->getX() <= borderGLx) {
-	//			//point[i]->setX(point[1]->getX());
-	//			//point[1]->setX(point[i]->getX() + point[i]->space);
-	//		}
-	//	}
-	//	else {
-	//		if (point[i]->getX() >= borderGRx) {
-	//			//point[i]->setX(point[1]->getX());
-	//			//point[1]->setX(point[i]->getX() - point[i]->space);
-	//		}
-	//	}
-
 	if (direction == rightToLeft) {
 		if (point.back()->getX() <= borderGLx) {
 			Vehicle* temp = point.back();
@@ -207,6 +194,7 @@ void lane::play() {
 	for (int i = 0; i < point.size(); i++) {
 		point[i]->draw();
 	}
+	light.draw();
 	gotoXY(0, 0);
 }
 
@@ -219,3 +207,52 @@ lane::~lane() {
 	}
 }
 
+
+void trafficLight::draw() {
+	if (isRed) {
+		setColor(15, 0); //nen trang, chu den
+		gotoXY(borderGRx + 2, y);
+		cout << " --- ";
+		setColor(4, 0); //nen do chu den
+		gotoXY(borderGRx + 2, y+1);
+		cout << "|   |";
+		setColor(4, 0);
+		gotoXY(borderGRx + 2, y + 1);
+		cout << "|   |";
+		setColor(15, 0);
+		gotoXY(borderGRx + 2, y+2);
+		cout << " --- ";
+	}
+	else {
+		setColor(15, 0); //nen trang, chu den
+		gotoXY(borderGRx + 2, y);
+		cout << " --- ";
+		setColor(2, 0); //nen xanh chu den
+		gotoXY(borderGRx + 2, y + 1);
+		cout << "|   |";
+		setColor(2, 0);
+		gotoXY(borderGRx + 2, y + 1);
+		cout << "|   |";
+		setColor(15, 0);
+		gotoXY(borderGRx + 2, y+2);
+		cout << " --- ";
+	}
+}
+
+void trafficLight::turnOff() {
+	if (isRed) {
+		end = time(NULL);
+		int temp = int(difftime(begin, end));
+		if (temp >= 3) {
+			isRed == false;
+		}
+	}
+}
+
+trafficLight::trafficLight() {
+	isRed = false;
+}
+
+void trafficLight::setY(int y) {
+	this->y = y;
+}

@@ -29,6 +29,7 @@ public:
     void endGame();
     void loadGame(ifstream);
     void saveGame(ifstream);
+    void deathAnimation();
     void pauseGame(HANDLE);
     void resumeGame(HANDLE);
 };

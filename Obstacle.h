@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 #include "tool.h"
+#include <time.h>
 
 using namespace std;
 
@@ -24,15 +25,17 @@ using namespace std;
 #define truck 0
 #define cat 1 
 #define bus 2
-#define spacelevel1 35
-#define spacelevel2 30
-#define spacelevel3 25
-#define spacelevel4 25
-#define spacelevel5 20
+#define spacelevel1 26
+#define spacelevel2 19
+#define spacelevel3 18
+#define spacelevel4 17
+#define spacelevel5 15
 
 #define borderCLx 139
 #define borderCRx 178
 
+#define green 0;
+#define red 1;
 
 class Vehicle {
 private:
@@ -116,12 +119,30 @@ public:
     void draw();
 };
 
+class trafficLight {
+private:
+    const short timeRedOn = 3;
+    int y;
+    bool isRed;
+    time_t begin;
+    time_t end;
+public:
+    trafficLight();
+    void setY(int y);
+    void draw();
+    void turnOff();
+    bool getTrafficLife();
+    void setRedOn();
+};
+
+
 class lane {
 private:
     int order;
     int level;
     deque <Vehicle*> point;
     int direction;
+    trafficLight light;
 public:
     // (level, order, direction)
     lane();
@@ -129,3 +150,5 @@ public:
     void play();
     ~lane();
 };
+
+
