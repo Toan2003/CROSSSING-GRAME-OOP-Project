@@ -27,9 +27,10 @@ Bus::Bus(int x, int y) : Vehicle(x, y) {
 
 lane::lane(int level, int order, int direction = leftToRight) {
 	this->level = level;
-	this->order = order; // hang thu may
+	this->order = order; // hang thu may // tinh tu hang thu 0 cho con nguoi dung
 	this->direction = direction;
 	int temp, len, tempSpace =0;
+	int x;
 	temp = rand() % 2;
 	if (temp == 0) {
 		if (direction == leftToRight) {
@@ -57,8 +58,18 @@ lane::lane(int level, int order, int direction = leftToRight) {
 	if (level == 4) tempSpace = spacelevel4;
 	if (level == 5) tempSpace = spacelevel5;
 
+	if (direction == leftToRight) {
+		x = borderGLx + 1;
+		while (x < borderGRx) {
+
+		}
+	}
+	else {
+		x = borderGRx - 1;
+	}
 
 	int numberObstacle =( (borderGRx - borderGLx - 1) / (len + tempSpace) )+1;
+
 	for (int i = 0; i < numberObstacle; i++) {
 		int randomSpace = 5 + rand() % 30;
 		if (temp == 0) {
@@ -172,6 +183,9 @@ void Bus::draw() {
 }
 
 void lane::play() {
+	for (int i = 0; i < point.size(); i++) {
+		point[i]->draw();
+	}
 	if (light.isRedLight()) return;
 	if (direction == rightToLeft) {
 		if (point.back()->getX() <= borderGLx) {
@@ -192,9 +206,6 @@ void lane::play() {
 
 	for (int i = 0; i < point.size(); i++) {
 		point[i]->move();
-	}
-	for (int i = 0; i < point.size(); i++) {
-		point[i]->draw();
 	}
 	gotoXY(0, 0);
 }

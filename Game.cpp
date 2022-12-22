@@ -9,67 +9,70 @@ void Game::gameRepair(int level, string player) {
     }
     this->level = level;
     if (level == 1) {
-        lane *a = new lane(level, 1, leftToRight);
-        lane *b = new lane(level, 3, rightToLeft);
-        lane *c = new lane(level, 5, leftToRight);
-        lane *d = new lane(level, 7, rightToLeft);
+        lane* a = new lane(level, 1, leftToRight);
+        lane* b = new lane(level, 2, rightToLeft);
+        lane* c = new lane(level, 3, leftToRight);
+        lane* d = new lane(level, 4, rightToLeft);
+        lane* e = new lane(level, 5, leftToRight);
+        lane* f = new lane(level, 6, rightToLeft);
         list.push_back(a);
         list.push_back(b);
         list.push_back(c);
         list.push_back(d);
-        speed = 500000;
+        list.push_back(e);
+        speed = 200;
     }
     else if (level == 2) {
-        lane *a = new lane(level, 1, leftToRight);
-        lane *b = new lane(level, 2, rightToLeft);
-        lane *c = new lane(level, 3, leftToRight);
-        lane *d = new lane(level, 4, rightToLeft);
-        lane *e = new lane(level, 5, leftToRight);
+        lane* a = new lane(level, 1, leftToRight);
+        lane* b = new lane(level, 2, rightToLeft);
+        lane* c = new lane(level, 3, leftToRight);
+        lane* d = new lane(level, 4, rightToLeft);
+        lane* e = new lane(level, 5, leftToRight);
+        lane* f = new lane(level, 6, rightToLeft);
         list.push_back(a);
         list.push_back(b);
         list.push_back(c);
         list.push_back(d);
         list.push_back(e);
-        speed = 5000000;
+        speed = 200;
     }
     else if (level == 3) {
-        lane *a = new lane(level, 1, leftToRight);
-        lane *b = new lane(level, 2, rightToLeft);
-        lane *c = new lane(level, 3, rightToLeft);
-        lane *d = new lane(level, 5, leftToRight);
-        lane *e = new lane(level, 6, leftToRight);
-        lane *f = new lane(level, 7, rightToLeft);
+        lane* a = new lane(level, 1, leftToRight);
+        lane* b = new lane(level, 2, rightToLeft);
+        lane* c = new lane(level, 3, leftToRight);
+        lane* d = new lane(level, 4, rightToLeft);
+        lane* e = new lane(level, 5, leftToRight);
+        lane* f = new lane(level, 6, rightToLeft);
         list.push_back(a);
         list.push_back(b);
         list.push_back(c);
         list.push_back(d);
         list.push_back(e);
         list.push_back(f);
-        speed = 5000000;
+        speed = 200;
     }
     else if (level == 4) {
-        lane *a = new lane(level, 1, leftToRight);
-        lane *b = new lane(level, 2, rightToLeft);
-        lane *c = new lane(level, 3, leftToRight);
-        lane *d = new lane(level, 5, rightToLeft);
-        lane *e = new lane(level, 6, leftToRight);
-        lane *f = new lane(level, 7, rightToLeft);
-        list.push_back(a);
-        list.push_back(b);
-        list.push_back(c);
-        list.push_back(d);
-        list.push_back(e);
-        list.push_back(f);
-        speed = 50000;
-    }
-    else if (level == 5) {
         lane *a = new lane(level, 1, leftToRight);
         lane *b = new lane(level, 2, rightToLeft);
         lane *c = new lane(level, 3, leftToRight);
         lane *d = new lane(level, 4, rightToLeft);
         lane *e = new lane(level, 5, leftToRight);
         lane *f = new lane(level, 6, rightToLeft);
-        lane *h = new lane(level, 7, leftToRight);
+        list.push_back(a);
+        list.push_back(b);
+        list.push_back(c);
+        list.push_back(d);
+        list.push_back(e);
+        list.push_back(f);
+        speed = 200;
+    }
+    else if (level == 5) {
+        lane* a = new lane(level, 1, leftToRight);
+        lane* b = new lane(level, 2, rightToLeft);
+        lane* c = new lane(level, 3, leftToRight);
+        lane* d = new lane(level, 4, rightToLeft);
+        lane* e = new lane(level, 5, leftToRight);
+        lane* f = new lane(level, 6, rightToLeft);
         list.push_back(a);
         list.push_back(b);
         list.push_back(c);
@@ -77,7 +80,7 @@ void Game::gameRepair(int level, string player) {
         list.push_back(e);
         list.push_back(f);
         list.push_back(h);
-        speed = 50;
+        speed = 200;
     }
     people = new CPEOPLE;
 }
@@ -193,3 +196,11 @@ void Game::deathAnimation() {
 
 }
 
+//bool Game::checkIsImpact() {
+//    int order = (borderGDy - people->getMY()) % 5;
+//    bool check = list[order]->checkImpact(people);
+//    if (check) {
+//        Game::deathAnimation();
+//    }
+//    return true;
+//}

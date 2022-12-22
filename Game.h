@@ -31,6 +31,7 @@ public:
     void pauseGame(HANDLE);
     void resumeGame(HANDLE);
     void deleteSource();
+    bool checkIsImpact();
     ~Game();
 };
 

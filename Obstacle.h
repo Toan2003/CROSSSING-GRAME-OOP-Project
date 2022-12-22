@@ -44,6 +44,7 @@ private:
     int trafficLight; //-1:red-stop, 0:yellow-slow(sleep(40)), 1:green-fast(sleep(40))
 public:
     int space;
+    int type;
     Vehicle(int , int);
     void setDirection(int direction);
     void setXY(int, int);
@@ -151,6 +152,7 @@ public:
     void play();
     void drawLight();
     void setTrafficLight(bool);
+    //bool checkImpact(CPEOPLE* );
     ~lane();
 };
 
