@@ -29,8 +29,7 @@ public:
     void Left();
     void Right();
     void Down();
-    bool isImpact(const Vehicle*&, int);
-    //bool isImpact(const CANIMAL*&);
+    bool isImpact(Vehicle*&, int);
     bool isFinish();
     bool isDead();
     void move();
@@ -41,8 +40,4 @@ public:
     void assignMY(int);
     void update();
     void nhanbanphim(char);
-    void assignChar();
-    // void dichuyen(CCAR);
 };
-
-void foo(CPEOPLE* p);

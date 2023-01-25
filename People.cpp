@@ -5,6 +5,7 @@ CPEOPLE::CPEOPLE()
     mX = 50;
     mY = borderGDy - 3;
     mState = true;
+    c = '\0';
 }
 
 void CPEOPLE::Up()
@@ -70,20 +71,14 @@ void CPEOPLE::draw()
     gotoXY(mX, mY + 1);
 
     cout << "/";
-
-    gotoXY(mX + 1, mY + 1);
     cout << "|";
-
-    gotoXY(mX + 2, mY + 1);
     cout << (char)92;
 
     gotoXY(mX, mY + 2);
     cout << "/";
-
-    gotoXY(mX + 2, mY + 2);
+    cout << " ";
     cout << (char)92;
-
-    gotoXY(0, 0);
+;
 }
 
 void CPEOPLE::clearPeople()
@@ -93,19 +88,10 @@ void CPEOPLE::clearPeople()
     cout << " ";
 
     gotoXY(mX, mY + 1);
-    cout << " ";
-
-    gotoXY(mX + 1, mY + 1);
-    cout << " ";
-
-    gotoXY(mX + 2, mY + 1);
-    cout << " ";
+    cout << "   ";
 
     gotoXY(mX, mY + 2);
-    cout << " ";
-
-    gotoXY(mX + 2, mY + 2);
-    cout << " ";
+    cout << "    ";
 }
 
 bool CPEOPLE::isDead()
@@ -124,7 +110,8 @@ bool CPEOPLE::isFinish()
     return false;
 }
 
-bool CPEOPLE::isImpact(const Vehicle*& object, int type)
+//type: 1|car, 2|truck, 3|cat, 4|bus
+bool CPEOPLE::isImpact( Vehicle*& object, int type)
 {
     int ax, ay;
     int px, py;
@@ -269,20 +256,9 @@ int CPEOPLE::getMX()
     return mX;
 }
 
-void foo(CPEOPLE* p)
-{
-    char tempt ='\0';
-    p->nhanbanphim(tempt);
-}
-
 void CPEOPLE::nhanbanphim(char tempt)
 {
-    while (true)
-    {
-        tempt = _getch();
-        c = tempt;
-    }
-
+    c = tempt;
 }
 
 void CPEOPLE::update()
@@ -292,10 +268,6 @@ void CPEOPLE::update()
     draw();
 }
 
-void CPEOPLE::assignChar()
-{
-    c = '\0';
-}
 
 
 
