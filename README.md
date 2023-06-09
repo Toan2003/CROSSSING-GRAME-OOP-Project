@@ -16,6 +16,7 @@ Attribute:
 Function:
 •	void move(): hàm thay đổi tọa độ x của Vehicle (hàm di chuyển)
 •	void draw(): hàm in Vehicle
+
 ----------------------------------------------------------------------------------------------------------------------
 **Class trafficLight: đèn tín hiệu**
 •	Đèn tín hiệu có hai trạng thái là xanh và đỏ tương ứng với hai trạng thái của Vehicle là di chuyển và dừng lại
@@ -29,6 +30,7 @@ Attribute:
 •	void setGreenOn(): tắt đèn đỏ
 •	bool isRedLight(): kiểm tra xem đèn đỏ hay không
 •	void draw(): vẽ đèn
+
 ----------------------------------------------------------------------------------------------------------------------
 **Class lane:** 
 •	Quản lý các “Vehicle” có cùng tọa độ y (cả game gồm 6 lane)
@@ -47,6 +49,7 @@ Function:
 •	void drawVehicle(): vẽ Vehicle
 •	void drawLight(): vẽ đèn tín hiệu
 •	void returnEachVehicle(const int&): trả về từng vehicle trong lane (để hàm isImpact của class People kiểm tra xem có xảy ra đụng đồ giữa Vehicle và People)
+
 ----------------------------------------------------------------------------------------------------------------------
 **Class CPEOPLE: Nhân vật mà người chơi điều khiển**
 •	Nhân vật có hai trạng thái là sống và chết.
@@ -62,6 +65,7 @@ Function:
 •	bool isDead(): kiểm tra trạng thái people
 •	void move(): hàm di chuyển
 •	void draw(): hàm vẽ người
+
 ----------------------------------------------------------------------------------------------------------------------
 **Class Game:** 
 •	Quản lý các class chính của game (lane và people)
@@ -88,12 +92,14 @@ Funtion:
 •	void gamePlay(): hàm chính chạy game
 •	void pause(): chức năng tạm dừng trò chơi 
 •	void resume(): chức năng tiếp tục trò chơi
-•	void newGame(): chức năng **quay về menu điều hướng
+•	void newGame(): chức năng quay về menu điều hướng
 •	void deleteSource(): giải phóng bộ nhớ
+
 ----------------------------------------------------------------------------------------------------------------------
 **Hai hàm vận hành chính:**
 •	subThread(): thread để vẽ animation lên console
 •	Game::gamePlay(): thread bắt phím nhập từ bàn phím và quản lý subThread cũng như các chức năng của game.
+
 ----------------------------------------------------------------------------------------------------------------------
 **Các hàm chức năng:**
 •	menu(): quản lý hàm loadGame() và bật tắt nhạc nền
